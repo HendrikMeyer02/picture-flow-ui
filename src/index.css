@@ -1,0 +1,327 @@
+/***
+Structure:
+-Imports
+-Basic elements
+-Effects
+-Extra elements
+    -Text
+    -Header
+-Inputs
+  -Button
+  -Form
+
+
+***/
+
+
+
+/*######IMPORTS######*/
+/* Font */
+@import url('https://fonts.googleapis.com/css2?family=Shrikhand&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Exo+2:wght@300;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
+@import 'bootstrap/dist/css/bootstrap.css';
+
+/*######BASIC LAYOUT######*/
+.standard-container {
+  /* Size */
+  /* width: 100% needed as it will overflow otherwise */
+  min-width: 100vw;
+  min-height: 100vh;
+
+  /* Position */
+  /* position: absolute;
+  z-index: 1; */
+
+  /* Grid */
+  display: grid;
+
+  grid-template-columns: 10% 80% 10%;
+  grid-template-rows: 20% 60% 20%;
+  grid-template-areas: "back-arrow           .              ."
+    ".  standard-content-container    ."
+    ".           footer         .";
+
+  align-items: center;
+  justify-items: center;
+
+  z-index: 1;
+}
+
+.standard-content-container {
+  /* Size */
+  width: 100%;
+  min-height: 100%;
+
+  /* Position */
+  grid-area: standard-content-container;
+
+  /*  Grid Items  */
+  align-items: center;
+  justify-items: center;
+  row-gap: 0.2rem;
+
+  overflow: hidden;
+
+  padding: 2rem;
+
+}
+
+/*#####DESKTOP#####*/
+/*Desktop Adjustments*/
+@media screen and (min-width: 500px) {
+  .standard-container {
+    min-width: 100vw;
+    min-height: 100vh;
+
+    display: grid;
+    grid-template-columns: 10% 80% 10%;
+    grid-template-rows: 10% 80% 10%;
+    grid-template-areas:
+      "back-arrow . ."
+      ". standard-content-container ."
+      ". footer .";
+    align-items: center;
+    justify-items: center;
+
+    z-index: 1;
+  }
+
+  .standard-content-container {
+    width: 100%;
+    min-height: 100%;
+    max-width: 600px;
+    grid-area: standard-content-container;
+
+    align-items: center;
+    justify-items: center;
+    /* padding: 0 3rem 0 3rem; */
+  }
+}
+
+
+/*######BASIC ELEMENTS######*/
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* --col1: #0D0221; */
+  --col0: rgb(16, 68, 96);
+  --col1: rgba(78, 167, 216);
+  --col2: rgba(122, 192, 249);
+  --col3: rgba(169, 216, 255);
+  /* --col2: #0F084B; */
+  --col4: #bed4d8;
+  --col5: #d8eae3;
+  --left: 0px auto auto 0px;
+  --right: 0px 0px auto 0px;
+
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #fff7f7;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+[data-theme="dark"] {
+  --col5: rgb(16, 68, 96) !important;
+  --col4: rgba(78, 167, 216) !important;
+  --col3: rgba(122, 192, 249) !important;
+  --col2: rgba(169, 216, 255) !important;
+  /* --col2: #0F084B; */
+  --col1: #A6CFD5 !important;
+  --col0: #C2E7D9 !important;
+
+  .drop-shadow-text span {
+    text-shadow: none;
+  }
+
+  ;
+
+
+
+}
+
+
+
+a {
+  font-weight: 500;
+  color: var(--col2);
+  text-decoration: inherit;
+}
+
+a:hover {
+  color: var(--col1);
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+button:hover {
+  border-color: #646cff;
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+
+  a:hover {
+    color: var(--col3);
+  }
+
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+p {
+  color: var(--col1);
+  margin: 0;
+}
+
+/*######EFFECTS######*/
+
+.glass {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.wave-top-bottom {
+  --mask:
+    radial-gradient(84.97px at 50% 114.00px, #000 99%, #0000 101%) calc(50% - 76px) 0/152px 51% repeat-x,
+    radial-gradient(84.97px at 50% -76px, #0000 99%, #000 101%) 50% 38px/152px calc(51% - 38px) repeat-x,
+    radial-gradient(84.97px at 50% calc(100% - 114.00px), #000 99%, #0000 101%) 50% 100%/152px 51% repeat-x,
+    radial-gradient(84.97px at 50% calc(100% + 76.00px), #0000 99%, #000 101%) calc(50% - 76px) calc(100% - 38px)/152px calc(51% - 38px) repeat-x;
+  -webkit-mask: var(--mask);
+  mask: var(--mask);
+}
+
+.wave-top {
+  --mask:
+    radial-gradient(84.97px at 50% 114.00px, #000 99%, #0000 101%) calc(50% - 76px) 0/152px 51% repeat-x,
+    radial-gradient(84.97px at 50% -76px, #0000 99%, #000 101%) 50% 38px/152px calc(51% - 38px) repeat-x;
+  -webkit-mask: var(--mask);
+  mask: var(--mask);
+}
+
+
+/*######Extra Elements######*/
+/*###Text###*/
+@font-face {
+  font-family: 'Rocher';
+  src: url(https://assets.codepen.io/9632/RocherColorGX.woff2);
+  base-palette: 7;
+}
+
+.drop-shadow-text {
+  font-family: "Exo 2", sans-serif;
+  color: #202020;
+  text-transform: uppercase;
+  letter-spacing: -2px;
+
+}
+
+.drop-shadow-text span {
+  display: block;
+  margin: 11px 0 17px 0;
+  line-height: 80px;
+  color: var(--col1);
+  text-shadow: 0 13.36px 8.896px #c4b59d, 0 -2px 1px #fff;
+  /* letter-spacing: -4px; */
+}
+
+/*###Header###*/
+.bf {
+  position: relative;
+  font-family: 'Shrikhand', serif;
+  color: var(--col1);
+}
+
+.bf h2 {
+  color: #fff;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+.bf h2:nth-child(1) {
+  color: transparent;
+  -webkit-text-stroke: 1.25px var(--col0);
+}
+
+.bf h2:nth-child(2) {
+  color: var(--col0);
+  animation: animate 4s ease-in-out infinite;
+}
+
+@keyframes animate {
+
+  0%,
+  100% {
+    clip-path: polygon(0% 45%,
+        16% 44%,
+        33% 50%,
+        54% 60%,
+        70% 61%,
+        84% 59%,
+        100% 52%,
+        100% 100%,
+        0% 100%);
+  }
+
+  50% {
+    clip-path: polygon(0% 60%,
+        15% 65%,
+        34% 66%,
+        51% 62%,
+        67% 50%,
+        84% 45%,
+        100% 46%,
+        100% 100%,
+        0% 100%);
+  }
+}

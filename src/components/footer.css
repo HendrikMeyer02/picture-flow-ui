@@ -1,0 +1,7 @@
+footer ul {
+    margin: 0;
+    display: flex;
+    list-style-type: none;
+    justify-content: space-around;
+    padding-inline-start: 0;
+}

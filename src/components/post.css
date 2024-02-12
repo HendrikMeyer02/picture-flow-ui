@@ -1,0 +1,20 @@
+.post-rounded-div{
+    overflow: hidden;
+    border-radius: 10%;
+}
+
+.img-wrapper {
+    width: 100%;
+    height: auto;
+}
+
+.img-wrapper.rotated {
+    transform: rotate(90deg);
+}
+
+.post-img{
+    border-radius: 10%;
+    max-width: 100%;
+    height: auto;
+    min-width: 200px;
+}

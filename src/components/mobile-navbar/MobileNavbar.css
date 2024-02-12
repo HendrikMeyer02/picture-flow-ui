@@ -1,0 +1,41 @@
+#mobileNavbar-container {
+    width: 100vw;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: fixed;
+    bottom: 0;
+    z-index: 2;
+
+    padding: 2rem 0 2rem 0;
+}
+
+#mobileNavbar-container img {
+    width: 15vw;
+    padding-left: 1rem;
+}
+
+#image-container {
+    padding: 1rem;
+    border-radius: 3rem;
+}
+
+/* Mobile Vertical */
+@media screen and (max-height: 700px) {
+    #mobileNavbar-container img {
+        width: 5vw;
+    }
+}
+
+/* Desktop */
+@media screen and (min-width: 700px) {
+    #mobileNavbar-container {
+        display: none;
+    }
+
+    #hide {
+        display: none;
+    }
+}

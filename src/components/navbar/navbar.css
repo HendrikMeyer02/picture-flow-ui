@@ -1,0 +1,78 @@
+.functionality-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--col4);
+    padding: 10px;
+    width: 100%;
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    border: .5px black solid;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.searchbar-container {
+    display: flex;
+    align-items: center;
+}
+
+.profile-container {
+    display: flex;
+    align-items: center;
+}
+
+
+.logo-text {
+    font-size: 20px;
+    color: var(--col1);
+    font-family: 'Shrikhand', serif;
+    padding-right: 7%;
+    padding-left: 4%;
+}
+
+.searchbar-button,
+.profile-button {
+    background-color: transparent;
+}
+
+.searchbar-input {
+    background-color: transparent !important;
+    border: none;
+    border-bottom: 2px solid var(--col1);
+    color: var(--col1);
+}
+
+.searchbar-input:focus {
+    outline: none;
+    border-bottom: 3px solid var(--col2);
+    transition: transform 0.3s ease;
+}
+
+.searchbar-input:focus::placeholder {
+    color: transparent
+}
+
+
+.logo-icon img,
+.searchbar-button img,
+.profile-button img {
+    width: 30px;
+    height: 30px;
+}
+
+
+/* Desktop */
+@media screen and (max-width: 700px) {
+    .functionality-container {
+        display: none;
+    }
+}
+
+#profile-button_img{
+    
+}

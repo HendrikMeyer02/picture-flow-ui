@@ -1,0 +1,142 @@
+.picture {
+  max-width: 100%;
+}
+
+.wave-button {
+  width: 200px;
+  padding: 20px 30px;
+  margin-bottom: 10px;
+  position: relative;
+  display: block;
+  text-decoration: none;
+  overflow: hidden;
+  border: 1.5px solid var(--col2);
+  background-color: #FFFFFF;
+  color: var(--col2);
+
+  &:hover {
+    .wave {
+      top: -120px;
+    }
+  }
+}
+
+.profile-form {
+  width: 100%;
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  color: var(--col2)
+}
+
+.placeholder-big {
+  height: 50px;
+  color: #FFFFFF;
+}
+
+.placeholder-small {
+  height: 10px;
+  color: #FFFFFF;
+}
+
+#form {
+  color: var(--col2);
+}
+
+.form-control {
+  border: 1.5px solid var(--col2);
+  color: var(--col2)
+}
+
+.top {
+  top: 100px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  border: 0;
+}
+
+.gallery-header {
+  display: none;
+}
+
+@media screen and (max-width: 700px) {
+  .gallery-container .gallery-box {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .gallery-header {
+    display: block;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin: 10px;
+  }
+}
+
+.proflie-gallery {
+  -webkit-column-count: 3;
+  -moz-column-count: 3;
+  column-count: 3;
+  -webkit-column-width: 33%;
+  -moz-column-width: 33%;
+  column-width: 33%;
+  padding: 0 12px;
+}
+
+.proflie-gallery a img {
+  width: 100%;
+  -webkit-transition: all 350ms ease;
+  transition: all 350ms ease;
+  margin-bottom: 12px;
+
+}
+
+.proflie-gallery a img:hover {
+  scale: 1.05;
+}
+
+
+@media (min-width: 460px) {
+  .proflie-gallery {
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2;
+  }
+
+  .profile-picture-gallery {
+
+    -webkit-column-count: 1;
+    -moz-column-count: 1;
+    column-count: 1;
+    -webkit-column-width: 33%;
+    -moz-column-width: 33%;
+    column-width: 33%;
+
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+@media (min-width: 700px) {
+
+  .profile-picture-gallery {
+    width: 40%;
+  }
+}
+
+
+
+@media (max-width: 480px) {
+  .proflie-gallery {
+    -webkit-column-count: 1;
+    -moz-column-count: 1;
+    column-count: 1;
+    -webkit-column-width: 33%;
+    -moz-column-width: 33%;
+    column-width: 33%;
+  }
+}

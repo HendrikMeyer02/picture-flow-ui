@@ -1,0 +1,423 @@
+/*
+###Basic Structure.
+Grid container over whole page to align left and right.
+Form container inside login container to structure elements.
+
+Mobile first principle:
+Basic layout for mobile.
+Specific adjustments for desktop and vertical mobile.
+
+Structure:
+
+##Mobile horizontal##
+-Login Container
+-Login Form
+
+###Desktop##
+-Login Container
+-Login Form
+-Elements
+
+##Mobile vertical##
+-Login Container
+-Login Form
+-Elements
+
+-Overall Elements
+*
+
+
+/* #################    Main Form Container    ####################*/
+
+#root {
+    padding: 0;
+}
+
+/*Mobile first principle*/
+.authentication-container {
+    /* Size */
+    /* width: 100% needed as it will overflow otherwise */
+    width: 100%;
+    min-height: 100vh;
+    max-height: 100vh;
+
+    /* Position */
+    /* position: absolute;
+    z-index: 1; */
+
+    /* Grid */
+    display: grid;
+
+    grid-template-columns: 10% 80% 10%;
+    grid-template-rows: 20% 60% 20%;
+    grid-template-areas: "back-arrow           .              ."
+        ".  authentication-form-container    ."
+        ".           footer         .";
+
+    align-items: center;
+    justify-items: center;
+
+}
+
+#authentication-form {
+    /* Size */
+    width: 100%;
+    height: 100%;
+
+    /* Position */
+    grid-area: authentication-form-container;
+
+    /* Grid */
+    display: grid;
+
+    grid-template-columns: 100%;
+    grid-template-rows: 20vh minmax(min-content, max-content) auto minmax(min-content, max-content) auto 1fr auto 1fr 1fr .5fr 1fr;
+    grid-template-areas: "header"
+        "error"
+        "username"
+        "username-err"
+        "email"
+        "email-err"
+        "password"
+        "password-err"
+        "forgot-password"
+        "login"
+        "signup";
+    /*  Grid Items  */
+    align-items: center;
+    justify-items: center;
+    row-gap: 0.2rem;
+
+    overflow: hidden;
+}
+
+.authentication-container footer {
+    display: none;
+}
+
+/*Desktop Adjustments*/
+@media screen and (min-width: 500px) {
+    .authentication-container {
+        min-width: 100vw;
+        min-height: 100vh;
+        max-height: 100vh;
+
+        display: grid;
+        grid-template-columns: 10% 80% 10%;
+        grid-template-rows: 10% 80% 10%;
+        grid-template-areas:
+            "back-arrow . ."
+            ". authentication-form-container ."
+            ". footer .";
+        align-items: center;
+        justify-items: center;
+    }
+
+    #authentication-form {
+        width: 100%;
+        height: 100%;
+        max-width: 600px;
+        max-height: 600px;
+        grid-area: authentication-form-container;
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: 20vh minmax(min-content, max-content) auto auto auto auto auto 1fr 1fr .5fr;
+        grid-template-areas:
+            "header"
+            "username"
+            "username-err"
+            "email"
+            "email-err"
+            "password"
+            "password-err"
+            "forgot-password"
+            "login"
+            "signup";
+        align-items: center;
+        justify-items: center;
+        /* padding: 0 3rem 0 3rem; */
+    }
+
+    /*Footer*/
+    .authentication-container footer {
+        display: block;
+        max-width: 100%;
+        max-height: 100%;
+
+        grid-area: footer;
+        align-self: start;
+
+        justify-content: start;
+    }
+
+    .authentication-container .footer-items {
+        padding-left: 0px;
+    }
+
+    /* Footer ul */
+    .authentication-container footer ul {
+        width: 100%;
+        /* Properties */
+        margin: 0;
+        display: flex;
+        list-style-type: none;
+        justify-content: center;
+    }
+
+    /* Footer Items */
+    .authentication-container footer a {
+        /*font-size: 3vw;*/
+        /* Properties */
+        margin-top: auto;
+        margin-bottom: 0;
+        padding: 0 .5em 0 .5em;
+
+        /* Animation */
+        transition: color ease-in-out 250ms;
+    }
+
+    .authentication-container footer a:hover {
+        /* Properties */
+        color: var(--col4);
+    }
+
+    #signupTrigger {
+        align-self: start;
+    }
+
+    #authentication-header-image {
+        display: none;
+    }
+
+    #header .bf h2 {
+        font-size: 4rem !important;
+    }
+
+    .error {
+        color: red;
+        font-size: .6rem !important;
+        margin: 0 4rem 0 4rem !important;
+        display: none;
+    }
+
+    #username-input:invalid #username-err {
+        display: block;
+    }
+
+}
+
+/*Mobile*/
+@media screen and (max-width: 500px) {
+    .authentication-header-text {
+        display: block;
+        font-size: 2rem !important;
+    }
+
+    #or {
+        display: none;
+    }
+
+    #authentication-back-arrow-link {
+        width: 8% !important;
+    }
+}
+
+/* #################    Mobile, Vertical    ####################*/
+@media screen and (max-height: 700px) {
+    .authentication-container {
+        grid-template-columns: 5% 90% 5% !important;
+        grid-template-rows: 5% 90% 5% !important;
+    }
+
+    /* Login Form */
+    #authentication-form {
+        /* Size */
+        width: 100%;
+        height: 100%;
+
+        /* Position */
+        grid-area: authentication-form-container;
+
+        /* Grid */
+        display: grid;
+
+        grid-template-columns: 50% 50%;
+        grid-template-rows: 1fr auto auto auto .2fr 0.5fr;
+        grid-template-areas:
+            "header         header"
+            "username username"
+            "username-err username-err"
+            "email           password"
+            "email-err   forgot-password"
+            "signup    login"
+        ;
+        /*  Grid Items  */
+        align-items: center;
+        justify-items: center;
+
+    }
+
+    #or {
+        display: none;
+    }
+
+    #username-form {
+        width: 90%;
+    }
+
+    #header .bf h2 {
+        font-size: 1.5rem !important;
+
+    }
+
+    #authentication-button {
+        min-width: 35% !important;
+        font-size: 0.8rem !important;
+    }
+
+
+    #signupTrigger {
+        font-size: .8rem;
+    }
+
+    footer {
+        display: none !important;
+    }
+
+    .error {
+        margin: 0 !important;
+    }
+}
+
+
+
+/*Items*/
+.authentication-header-text {
+    grid-area: header;
+    font-size: 3rem;
+    margin: 0;
+}
+
+#authentication-header-image {
+    /* Size */
+    display: none;
+    max-height: 15%;
+    max-width: 15%;
+    rotate: 180deg;
+}
+
+#header {
+    display: flex;
+    justify-content: center;
+
+    max-width: 100%;
+    max-height: 100%;
+    grid-area: header;
+    align-items: center;
+}
+
+#header .bf h2 {
+    font-size: 2rem;
+}
+
+#email-form {
+    grid-area: email;
+}
+
+#password-form {
+    grid-area: password;
+}
+
+#forgot-password {
+    grid-area: forgot-password;
+    color: red;
+    display: none;
+    font-size: 0.6rem;
+}
+
+#authentication-button {
+    min-width: 80%;
+    grid-area: login;
+}
+
+#or {
+    color: var(--col2);
+    grid-area: or;
+}
+
+#signupTrigger {
+    grid-area: signup;
+    cursor: pointer;
+}
+
+#signupTrigger:hover {
+    grid-area: signup;
+    color: var(--col2);
+}
+
+#username-form {
+    grid-area: username;
+}
+
+#authentication-back-arrow {
+    width: 100%;
+}
+
+#authentication-back-arrow-container {
+    grid-area: header;
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    right: auto;
+    bottom: auto;
+}
+
+#authentication-back-arrow-link {
+    width: 5%;
+    display: block;
+}
+
+#error {
+    width: auto;
+    grid-area: error;
+}
+
+.error {
+    color: red;
+    font-size: .6rem;
+    margin: 0 2.5rem 0 2.5rem;
+    display: none;
+
+}
+
+#username-err {
+    grid-area: username-err;
+    text-align: center;
+}
+
+#email-err {
+    grid-area: email-err;
+    text-align: center;
+}
+
+#password-err {
+    grid-area: password-err;
+    text-align: center;
+}
+
+
+
+/*Smooth hiding*/
+.grid-item {
+    transition: all 0.5s ease-in-out;
+}
+
+.hidden {
+    opacity: 0;
+    transform: scale(0.1);
+}
+
+.unhidden {
+    opacity: 1;
+    transform: scale(1);
+}
