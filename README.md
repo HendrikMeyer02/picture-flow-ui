@@ -19,4 +19,5 @@ Start the development server by running the following command:
 
 
 ```npm run dev```
+
 Open your web browser and navigate to the specified local development server address (http://localhost:5173).
