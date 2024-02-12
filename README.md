@@ -13,10 +13,10 @@ Open a terminal or command prompt within the project directory.
 
 Run the following command to install project dependencies:
 
-npm install
+```npm install```
 # Run Development Server
 Start the development server by running the following command:
 
 
-npm run dev
+```npm run dev```
 Open your web browser and navigate to the specified local development server address (http://localhost:5173).
