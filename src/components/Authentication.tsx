@@ -109,9 +109,6 @@ export default function Authentication() {
       if (token.statusText == "OK") {
         login(authToken.AuthToken);
         navigate("/main");
-      } else {
-        console.log(token.statusText);
-        forgotPassword.style.display = "block";
       }
     }
   };
