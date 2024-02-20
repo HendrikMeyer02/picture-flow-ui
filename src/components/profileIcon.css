@@ -1,4 +1,8 @@
 .icon{
     max-width: 50%;
+    border-radius: 50%;     /* Macht das Bild rund */
+  object-fit: cover;      /* Schneidet das Bild zu, um es anzupassen, ohne Verzerrungen */
+  overflow: hidden;       /* Versteckt alles außerhalb des runden Rahmens */
+  transform: scale(1.1);
 }
   
