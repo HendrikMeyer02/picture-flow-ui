@@ -9,6 +9,9 @@ export default function Authentication() {
   //Global constants
   const [loginState, setLogin] = useState(true);
   const [buttonText, setButtonText] = useState("Anmelden");
+  const [emailErrorMessage, setEmailErrorMessage] = useState(
+    "Ungültige E-Mail Adresse."
+  );
   const navigate = useNavigate();
   const cookies = new Cookies();
 
@@ -24,16 +27,17 @@ export default function Authentication() {
     const forgotPassword = document.getElementById(
       "forgot-password"
     ) as HTMLInputElement;
-
+    const usernameErr = document.getElementById("username-err");
+    usernameErr!.style.display = "none";
+    const emailErr = document.getElementById("email-err");
+    emailErr!.style.display = "none";
     usernameInput.value = "";
 
     if (loginState == true) {
       //Wenn man zur Registrierung geht
-
+      forgotPassword.style.display = "none";
       setButtonText("Registrieren");
       switchText!.innerHTML = "Vorhandenes Konto";
-      forgotPassword.style.display = "block";
-      forgotPassword.innerHTML = "Registrierung nur als Demo";
 
       gridItems.forEach((item) => {
         item.classList.toggle("hidden");
@@ -105,10 +109,22 @@ export default function Authentication() {
           username: values["userName"],
         }),
       });
-      const authToken = await token.json();
-      if (token.statusText == "OK") {
+      const responseBody = await token.text();
+      if (token.ok) {
+        const authToken = JSON.parse(responseBody);
         login(authToken.AuthToken);
         navigate("/main");
+      } else {
+        console.log(responseBody);
+        if (responseBody === '{"detail":"Username already exists"}') {
+          const usernameErr = document.getElementById("username-err");
+          usernameErr!.style.display = "block";
+        } else if (responseBody === '{"detail":"Email already exists"}') {
+          const emailErr = document.getElementById("email-err");
+          setEmailErrorMessage("Email already exists");
+          emailErr!.style.display = "block";
+          setEmailErrorMessage("Ungültige E-Mail Adresse.");
+        }
       }
     }
   };
@@ -173,7 +189,9 @@ export default function Authentication() {
               <span className="content-name">Nutzername</span>
             </label>
           </div>
-          <p className="error" id="username-err"></p>
+          <p className="error" id="username-err">
+            username already exists
+          </p>
 
           <div className="form" id="email-form">
             <input
@@ -190,7 +208,7 @@ export default function Authentication() {
             </label>
           </div>
           <p className="error" id="email-err">
-            Ungültige E-Mail Adresse.
+            {emailErrorMessage}
           </p>
 
           <div className="form" id="password-form">
@@ -207,9 +225,11 @@ export default function Authentication() {
               <span className="content-name">Passwort</span>
             </label>
           </div>
-          <p className="error" id="password-err">
-            Falsche Anmeldedaten!
-          </p>
+          {loginState && (
+            <p className="error" id="password-err">
+              Falsche Anmeldedaten!
+            </p>
+          )}
 
           <p id="forgot-password">Falsche Anmeldedaten.</p>
           <input
