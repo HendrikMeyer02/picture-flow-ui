@@ -7,7 +7,7 @@ interface Props {
 
 export default function ProfileIcon({ size }: Props) {
   const [profileImage, setProfileImage] = useState("./img/icon/profile_icon.png");
-  const fileInputRef = useRef<HTMLInputElement>(null); // Stellt sicher, dass der Typ mit Ihrer Umgebung übereinstimmt
+  const fileInputRef = useRef<HTMLInputElement>(null); 
   const iconSize = size ? `${size}px` : undefined;
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
