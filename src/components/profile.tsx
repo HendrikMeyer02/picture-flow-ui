@@ -1,12 +1,11 @@
-import "./authentication.css";
-import "./profile.css";
+import { ChangeEvent, useEffect, useState } from "react";
+import { useLocation } from "react-router";
+import Cookie from "universal-cookie";
 import "./LandingPage.css";
 import ProfileIcon from "./ProfileIcon";
-import { ChangeEvent, useEffect, useState } from "react";
-import Cookie from "universal-cookie";
+import "./authentication.css";
 import Pictures from "./gallery/Pictures";
-import { useLocation } from "react-router";
-import Cookies from "universal-cookie";
+import "./profile.css";
 
 function Profile() {
   const cookie = new Cookie();
@@ -86,6 +85,21 @@ function Profile() {
         getPictures(authorId);
       }
     });
+    const profilePicture = fetch(
+      `http://localhost:8000/api/pictures/profilepicture/${authorId}`,
+      {
+        method: "GET",
+        headers: {
+          auth: authorization,
+        },
+      }
+    ).then((response) => {
+      if (!response.ok) {
+        throw new Error("Fehler beim Abrufen der Daten");
+      }
+      return response.json();
+    });
+    console.log(profilePicture);
   }, [authorization, isIDequalToLogin, authorId]);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -95,7 +109,7 @@ function Profile() {
       [name]: value,
     });
 
-    setIsButtonVisible(value !== "" && isIDequalToLogin)
+    setIsButtonVisible(value !== "" && isIDequalToLogin);
   };
 
   const save = async () => {
@@ -109,13 +123,18 @@ function Profile() {
       const emailErr = document.getElementById("email-err");
       const save = document.getElementById("save");
 
-      const emailInputField = document.getElementById("email-input") as HTMLInputElement;
+      const emailInputField = document.getElementById(
+        "email-input"
+      ) as HTMLInputElement;
 
       const emailReg = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-      console.log(emailInputField.value)
+      console.log(emailInputField.value);
 
-      if (emailReg.test(emailInputField!.value) || emailInputField.value == "") {
+      if (
+        emailReg.test(emailInputField!.value) ||
+        emailInputField.value == ""
+      ) {
         emailErr!.style.display = "none";
         if (emailValue !== "") {
           requestBody.email = emailValue;
@@ -145,12 +164,10 @@ function Profile() {
           console.log("Mindestens ein Feld muss ausgefüllt sein.");
         }
         save!.style.backgroundColor = "lightgreen";
-
       } else {
         emailErr!.style.display = "block";
         save!.style.backgroundColor = "darkred";
       }
-
     }
   };
 
@@ -255,7 +272,7 @@ function Profile() {
             </div>
           )}
         </div>
-      </div >
+      </div>
       <div className="placeholder-big"></div>
       <div className="profile-picture-gallery picture-gallery">
         <Pictures pictures={images}></Pictures>
