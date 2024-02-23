@@ -86,7 +86,7 @@ function Profile() {
       }
     });
     const profilePicture = fetch(
-      `http://localhost:8000/api/pictures/profilepicture/${authorId}`,
+      `http://localhost:8000/api/profilepicture/${authorId}`,
       {
         method: "GET",
         headers: {
@@ -100,6 +100,17 @@ function Profile() {
       return response.json();
     });
     console.log(profilePicture);
+    const data = new FormData();
+    const file = new File(["../img/logo.png"], "file.png");
+    data.append("file", file);
+    console.log(data);
+    fetch(`http://localhost:8000/api/profilepicture`, {
+      method: "POST",
+      headers: {
+        auth: authorization,
+      },
+      body: data,
+    });
   }, [authorization, isIDequalToLogin, authorId]);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
