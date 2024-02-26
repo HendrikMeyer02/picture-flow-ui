@@ -104,13 +104,7 @@ function Profile() {
     const file = new File(["../img/logo.png"], "file.png");
     data.append("file", file);
     console.log(data);
-    fetch(`http://localhost:8000/api/profilepicture`, {
-      method: "POST",
-      headers: {
-        auth: authorization,
-      },
-      body: data,
-    });
+    
   }, [authorization, isIDequalToLogin, authorId]);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -214,7 +208,7 @@ function Profile() {
       <div className="top">
         <div className="row">
           <div className="col-md-6 container d-flex justify-content-center align-items-center">
-            <ProfileIcon></ProfileIcon>
+            <ProfileIcon authorId={authorId}></ProfileIcon>
           </div>
         </div>
         <div className="row">
