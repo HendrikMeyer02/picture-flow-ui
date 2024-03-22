@@ -104,7 +104,6 @@ function Profile() {
     const file = new File(["../img/logo.png"], "file.png");
     data.append("file", file);
     console.log(data);
-    
   }, [authorization, isIDequalToLogin, authorId]);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -208,7 +207,10 @@ function Profile() {
       <div className="top">
         <div className="row">
           <div className="col-md-6 container d-flex justify-content-center align-items-center">
-            <ProfileIcon authorId={authorId}></ProfileIcon>
+            <ProfileIcon
+              authorId={authorId}
+              isIDequalToLogin={isIDequalToLogin}
+            ></ProfileIcon>
           </div>
         </div>
         <div className="row">
