@@ -251,7 +251,7 @@ function Profile() {
                 id="save_button"
               >
                 <button className="wave-button" id="save" onClick={save}>
-                  speichern
+                {t("saveChanges")}
                 </button>
               </div>
             </div>

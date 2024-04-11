@@ -1,12 +1,14 @@
 import "./createPost.css";
 import Cookie from "universal-cookie";
 import { ChangeEvent, useRef, useState } from "react";
+import { useTranslation } from "react-i18next"
 
 export default function CreatePost() {
-  const [imageUrl, setImageUrl] = useState(""); // State, um die Bild-URL zu speichern
+  const [imageUrl, setImageUrl] = useState("");
   const [imageData, setImageData] = useState("");
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [description, setDescription] = useState("");
+  const { t } = useTranslation();
 
   const handleFileUpload = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target && e.target.files && e.target.files.length > 0) {
@@ -130,7 +132,7 @@ export default function CreatePost() {
           <div className="row center-row-and-col">
             <div className="col-md-6">
               <label htmlFor="name-input" className="form-label">
-                Beschreibung
+                {t("uploadDescription")}
               </label>
               <input
                 type="text"

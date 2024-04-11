@@ -3,13 +3,15 @@ import CheckLogin from "../../auth/CheckLogin"
 import "./search.css"
 import useBookSearch from "./useBookSearch";
 import { useState, useRef, useCallback, useEffect } from "react";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next"
 
 export default function Search() {
 
     const [searchInput, setInput] = useState("")
     const [allAuthors, setAllAuthors] = useState(null);
     const [searchedAuthors, setSearchedAuthors] = useState([{ id: "", username: "" }])
+    const { t } = useTranslation();
 
     useEffect(() => {
         getAuthors()
@@ -64,7 +66,7 @@ export default function Search() {
     if (!CheckLogin()) {
         return (
             <>
-                <p>Nicht eingeloggt</p>
+                <p>{t("notLoggedIn")}</p>
             </>
         );
     } else {
@@ -77,7 +79,7 @@ export default function Search() {
                         <form onSubmit={handleSubmit} id="search-form" className="glass">
 
 
-                            <h1>Autoren suchen</h1>
+                            <h1>{t("searchForAuthors")}</h1>
                             <div className="form" id="username-form">
                                 <input
                                     id="username-input"
@@ -87,10 +89,10 @@ export default function Search() {
                                     placeholder={searchInput}
                                 />
                                 <label htmlFor="username" className="label-name">
-                                    <span className="content-name">Nutzername</span>
+                                    <span className="content-name">{t("userName")}</span>
                                 </label>
                             </div>
-                            <input type="submit" className="square-button" value="Suchen"></input>
+                            <input type="submit" className="square-button" value={t("search")}></input>
                         </form>
                         <div id="found-authors" className="glass">
                             {searchedAuthors.map((text, index) => (
@@ -98,7 +100,7 @@ export default function Search() {
                                     <p className="found-author" key={index}>{text.username}</p>
                                 </Link>
                             ))}
-                            <p id="no-authors">Keine Autoren gefunden.</p>
+                            <p id="no-authors">{t("noAuthorsFound")}</p>
                         </div>
                     </div>
                 </div>

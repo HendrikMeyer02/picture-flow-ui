@@ -6,14 +6,16 @@ import "./pictureDetail.css"
 import { Link } from "react-router-dom";
 import DeleteButton from "../delete_button";
 import { log } from "console";
+import { useTranslation } from "react-i18next"
 
 
 export default function PictureDetails() {
     const [picture, setPicture] = useState([]);
     const [author, setAuthor] = useState({ "author": "Ole" });
-    const [description, setDescription] = useState({ "description": "Keine Beschreibung" });
+    const [description, setDescription] = useState({ "description": "No description" });
     const [id, setID] = useState({ "id": "" });
     const [authorID, setAuthorID] = useState({ "authorID": "" });
+    const { t } = useTranslation();
 
 
     useEffect(() => {
@@ -28,7 +30,7 @@ export default function PictureDetails() {
         setID({ "id": receivedID })
         setAuthor({ "author": receivedAuthor })
         if (receivedDescription == "") {
-            setDescription({ "description": "Keine Beschreibung" })
+            setDescription({ "description": "No description" })
         } else {
             setDescription({ "description": receivedDescription })
         }

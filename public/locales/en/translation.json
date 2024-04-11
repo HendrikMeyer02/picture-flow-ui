@@ -55,5 +55,13 @@
     "userNameTaken": "This user name has already been taken",
     "password": "Password",
     "authenticationWrongLoginData": "Wrong login data!",
-    "authenticationNewAccount": "New account"
+    "authenticationNewAccount": "New account",
+    "search": "Search",
+    "searchForAuthors": "Search for authors",
+    "noAuthorsFound": "No authors found.",
+    "uploadDescription": "Description",
+    "saveChanges": "Save changes",
+    "noDescription": "No Description",
+    "notLoggedIn": "Not logged in!",
+    "saveChanges": "Save"
 }
