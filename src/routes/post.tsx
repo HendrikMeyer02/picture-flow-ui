@@ -1,19 +1,21 @@
 import React from "react";
 import "../components/post.css";
 import CheckLogin from "../auth/CheckLogin";
+import { useTranslation } from "react-i18next";
 
 export default function Post() {
+  const { t } = useTranslation();
   const post = {
     account: "placeholder",
     postID: "id",
-    alt: "Naul Peusel war hier",
-    description: "Ich bin eine Beschreibung",
+    alt: "Alternative text if picture is not available",
+    description: "I'm a description",
     src: "../../img/sample-img/4.png",
   };
   if (!CheckLogin()) {
     return (
       <>
-        <p>Nicht eingeloggt!</p>
+        <p>{t("infoNotLoggedIn")}</p>
       </>
     );
   } else {

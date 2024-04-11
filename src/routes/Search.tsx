@@ -4,11 +4,13 @@ import MobileNavbar from "../components/mobile-navbar/MobileNavbar.tsx";
 import Search from "../components/search/Search.tsx";
 import CheckLogin from "../auth/CheckLogin.tsx";
 import BackButton from "../components/BackButton.tsx";
+import { useTranslation } from "react-i18next";
 export default function SearchPage() {
+    const { t } = useTranslation();
     if (!CheckLogin()) {
         return (
             <>
-                <p>Nicht eingeloggt!</p>
+                <p>{t("infoNotLoggedIn")}</p>
             </>
         );
     } else {

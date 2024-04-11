@@ -4,16 +4,18 @@ import Cookies from "universal-cookie";
 import "./authentication.css";
 import Footer from "./footer";
 import Header from "./misc/Header";
+import { useTranslation } from "react-i18next"
 
 export default function Authentication() {
   //Global constants
   const [loginState, setLogin] = useState(true);
-  const [buttonText, setButtonText] = useState("Anmelden");
+  const [buttonText, setButtonText] = useState("Login");
   const [emailErrorMessage, setEmailErrorMessage] = useState(
-    "Ungültige E-Mail Adresse."
+    "Invalid email address."
   );
   const navigate = useNavigate();
   const cookies = new Cookies();
+  const { t } = useTranslation();
 
   //Login Validation
 
@@ -36,8 +38,8 @@ export default function Authentication() {
     if (loginState == true) {
       //Wenn man zur Registrierung geht
       forgotPassword.style.display = "none";
-      setButtonText("Registrieren");
-      switchText!.innerHTML = "Vorhandenes Konto";
+      setButtonText("SignUp");
+      switchText!.innerHTML = "Existing account";
 
       gridItems.forEach((item) => {
         item.classList.toggle("hidden");
@@ -51,10 +53,10 @@ export default function Authentication() {
     } else {
       //Wenn man zum Login geht
 
-      setButtonText("Anmelden");
-      switchText!.innerHTML = "Kein Konto";
+      setButtonText("Login");
+      switchText!.innerHTML = "No account";
       forgotPassword.style.display = "none";
-      forgotPassword.innerHTML = "Falsche Anmeldedaten!";
+      forgotPassword.innerHTML = "Wrong login data!";
 
       gridItems.forEach((item) => {
         item.classList.toggle("hidden");
@@ -186,11 +188,11 @@ export default function Authentication() {
               autoComplete="off"
             />
             <label htmlFor="username" className="label-name">
-              <span className="content-name">Nutzername</span>
+              <span className="content-name">{t("userName")}</span>
             </label>
           </div>
           <p className="error" id="username-err">
-            username already exists
+          {t("userNameTaken")}
           </p>
 
           <div className="form" id="email-form">
@@ -204,7 +206,7 @@ export default function Authentication() {
               required
             />
             <label htmlFor="email" className="label-name">
-              <span className="content-name">Email</span>
+              <span className="content-name">{t("email")}</span>
             </label>
           </div>
           <p className="error" id="email-err">
@@ -222,16 +224,16 @@ export default function Authentication() {
               required
             />
             <label htmlFor="password" className="label-name">
-              <span className="content-name">Passwort</span>
+              <span className="content-name">{t("password")}</span>
             </label>
           </div>
           {loginState && (
             <p className="error" id="password-err">
-              Falsche Anmeldedaten!
+              {t("authenticationWrongLoginData")}
             </p>
           )}
 
-          <p id="forgot-password">Falsche Anmeldedaten.</p>
+          <p id="forgot-password">{t("authenticationWrongLoginData")}</p>
           <input
             type="submit"
             autoComplete="off"
@@ -240,7 +242,7 @@ export default function Authentication() {
             className="square-button"
           ></input>
           <p id="signupTrigger" onClick={flipElements}>
-            Neues Konto
+          {t("authenticationNewAccount")}
           </p>
         </form>
         <Footer />

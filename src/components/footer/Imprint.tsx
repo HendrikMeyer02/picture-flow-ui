@@ -1,9 +1,11 @@
 import BackButton from "../BackButton";
 import { Toggle } from "../misc/Toggle.tsx";
-import useLocalStorage from "use-local-storage"
+import useLocalStorage from "use-local-storage";
+import { useTranslation } from "react-i18next"
 
 export default function Imprint() {
     const [isDark, setIsDark] = useLocalStorage("isDark", false);
+    const { t } = useTranslation();
 
     return (
         <>
@@ -12,32 +14,32 @@ export default function Imprint() {
 
             <div className="standard-container">
                 <div className="standard-content-container glass">
-                    <h1>Impressum</h1>
+                    <h1>{t("imprint")}</h1>
 
-                    <p><strong>Verantwortlich für die chaotische Bildersammlung:</strong></p>
-                    <p>Max Pixelchaos</p>
-                    <p>Musterstraße 42<br />12345 Bilderstadt</p>
+                    <p><strong>{t("imprintResponsibility")}</strong></p>
+                    <p>Max Chaospixel</p>
+                    <p>Image Avenue 42<br />12345 Pictureville</p>
 
-                    <p><strong>Telefon:</strong></p>
+                    <p><strong>{t("phone")}</strong></p>
                     <p>555-123-4567</p>
 
-                    <p><strong>E-Mail:</strong></p>
-                    <p>max@bilderfluss.com</p>
+                    <p><strong>{t("email")}</strong></p>
+                    <p>max@pictureflow.com</p>
 
-                    <p><strong>Handelsregister für zufällige Motivsuche:</strong></p>
-                    <p>Unser Motto: "Alles ist möglich!"</p>
+                    <p><strong>{t("imprintTradeRegister")}</strong></p>
+                    <p>{t("imprintMotto")}</p>
 
-                    <p><strong>Umsatzsteuer-Identifikationsnummer für kreative Verwirrung:</strong></p>
-                    <p>USt-IdNr.: 42-Fluss-Bild</p>
+                    <p><strong>{t("imprintTaxId")}</strong></p>
+                    <p>{t("imprintTaxId")}: 42-Picture-Flow</p>
 
-                    <p><strong>Haftungsausschluss:</strong></p>
-                    <p>Wir übernehmen keine Verantwortung für verirrte Selfies oder verschwundene Socken auf unseren Bildern.</p>
+                    <p><strong>{t("imprintDisclaimer")}</strong></p>
+                    <p>{t("imprintDisclaimerMessage")}</p>
 
-                    <p><strong>Urheberrechtshinweis:</strong></p>
-                    <p>Alle Bilder sind entweder gemeinfrei oder von den Weltmeistern der Schnappschüsse geklaut. Keine Sorgen, niemand vermisst sie!</p>
+                    <p><strong>{t("imprintCopyright")}</strong></p>
+                    <p>{t("imprintCopyrightMessage")}</p>
 
-                    <p><strong>Kunden-Support:</strong></p>
-                    <p>Unser Kundensupport ist derzeit in einem wilden Fotoshooting und kann nicht antworten. Wir hoffen, dass sie bald zurück sind, aber niemand weiß genau, wo sie sich gerade befinden.</p>
+                    <p><strong>{t("imprintSupport")}</strong></p>
+                    <p>{t("imprintSupportMessage")}</p>
                 </div>
             </div>
 

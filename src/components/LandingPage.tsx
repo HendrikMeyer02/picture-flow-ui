@@ -7,14 +7,16 @@ import { Toggle } from "./misc/Toggle.tsx";
 import useLocalStorage from "use-local-storage";
 import CheckLogin from "../auth/CheckLogin.tsx";
 import { sayHi } from "./backend_api/utils.js";
+import { useTranslation } from "react-i18next";
 export default function LandingPage() {
 
     sayHi();
     const [isDark, setIsDark] = useLocalStorage("isDark", false);
+    const { t } = useTranslation();
     if (CheckLogin()) {
         return (
             <>
-                <p>Eingeloggt!</p>
+                <p>{t("infoLoggedIn")}</p>
             </>
         );
     } else {
@@ -29,8 +31,7 @@ export default function LandingPage() {
                     <div className="" id="text">
                         <div className="drop-shadow-text" id="description">
                             <span>
-                                Bilderfluss ist deine Plattform, um deine eigenen Bilder zu
-                                teilen, Inspiration zu finden und Kreativität zu entfachen.
+                            {t("landingPageDescription")}
                             </span>
                         </div>
                     </div>
@@ -43,8 +44,7 @@ export default function LandingPage() {
                     <div className="drop-shadow-text" id="call-to-register">
                         {" "}
                         <span>
-                            Registriere dich noch heute bei Bilderfluss und tauche ein in den
-                            endlosen Strom der Bilder.{" "}
+                        {t("landingPageCallToRegister")}{" "}
                         </span>
                     </div>
                 </div>
@@ -52,7 +52,7 @@ export default function LandingPage() {
                 <div id="go-to-login-container">
                     <Link to={`/authentication`}>
                         <a href="javascript:void(0)" className="wave-button">
-                            <span>Anmelden</span>
+                            <span>{t("landingPageLoginButton")}</span>
                             <div className="wave"></div>
                         </a>
                     </Link>

@@ -2,6 +2,7 @@ import "./App.css";
 import useLocalStorage from "use-local-storage";
 import { AuthWrapper } from './auth/AuthWrapper';
 import { BrowserRouter } from 'react-router-dom';
+import "./i18n/config.ts";
 
 
 function App({ children }) {
