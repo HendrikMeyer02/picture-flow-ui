@@ -7,6 +7,7 @@ import Cookie from "universal-cookie";
 import Pictures from "./gallery/Pictures";
 import { useLocation } from "react-router";
 import Cookies from "universal-cookie";
+import { useTranslation } from "react-i18next"
 
 function Profile() {
   const cookie = new Cookie();
@@ -15,6 +16,7 @@ function Profile() {
   const authorIdParam = queryParams.get("authorId");
   const authorname = queryParams.get("authorName");
   const [images, setImages] = useState([]);
+  const { t } = useTranslation();
   //Events
   const [values, setValues] = useState({
     email: "",
@@ -42,7 +44,7 @@ function Profile() {
   const [formData, setFormData] = useState({
     name: "Name",
     email: "Email",
-    password: "Passwort",
+    password: "Password",
   });
 
   useEffect(() => {
@@ -72,7 +74,7 @@ function Profile() {
       setFormData({
         name: data?.username || "Name",
         email: data?.email || "Email",
-        password: "Dein Passwort",
+        password: "Your password",
       });
     };
 
@@ -142,7 +144,7 @@ function Profile() {
           console.log(authtoken);
           newtoken(authtoken.AuthToken);
         } else {
-          console.log("Mindestens ein Feld muss ausgefüllt sein.");
+          console.log("At least one field has to be filled.");
         }
         save!.style.backgroundColor = "lightgreen";
 
@@ -249,7 +251,7 @@ function Profile() {
                 id="save_button"
               >
                 <button className="wave-button" id="save" onClick={save}>
-                  speichern
+                {t("saveChanges")}
                 </button>
               </div>
             </div>
