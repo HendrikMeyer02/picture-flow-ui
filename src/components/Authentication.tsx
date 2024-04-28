@@ -1,10 +1,10 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
 import "./authentication.css";
 import Footer from "./footer";
 import Header from "./misc/Header";
-import { useTranslation } from "react-i18next"
 
 export default function Authentication() {
   //Global constants
@@ -83,8 +83,6 @@ export default function Authentication() {
     ) as HTMLInputElement;
     e.preventDefault();
 
-    //Überprüft die eingegebenen Daten.
-    //Kann erweitert werden mit vorhandenem Backend
     if (loginState == true) {
       const token = await fetch("http://localhost:8000/auth/login", {
         method: "POST",
@@ -192,7 +190,7 @@ export default function Authentication() {
             </label>
           </div>
           <p className="error" id="username-err">
-          {t("userNameTaken")}
+            {t("userNameTaken")}
           </p>
 
           <div className="form" id="email-form">
@@ -242,7 +240,7 @@ export default function Authentication() {
             className="square-button"
           ></input>
           <p id="signupTrigger" onClick={flipElements}>
-          {t("authenticationNewAccount")}
+            {t("authenticationNewAccount")}
           </p>
         </form>
         <Footer />
