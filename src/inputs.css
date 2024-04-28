@@ -10,6 +10,7 @@
     text-decoration: none;
     overflow: hidden;
     border: 1.5px solid var(--col1);
+    text-align: center;
 
     &:hover {
         .wave {
