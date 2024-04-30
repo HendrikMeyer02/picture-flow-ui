@@ -13,17 +13,13 @@ interface DescriptionState {
   description: string;
 }
 
-interface IDState {
-  id: string;
-}
-
 export default function PictureDetails() {
   const [author, setAuthor] = useState<AuthorState>({ author: "Ole" });
   const [description, setDescription] = useState<DescriptionState>({
     description: "No description",
   });
-  const [id, setID] = useState<IDState>({ id: "" });
-  const [authorID, setAuthorID] = useState<IDState>({ id: "" });
+  const [id, setID] = useState<string>("");
+  const [authorID, setAuthorID] = useState<string>();
 
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
@@ -32,8 +28,8 @@ export default function PictureDetails() {
     const receivedAuthorID = searchParams.get("authorID") || "";
     const receivedDescription = searchParams.get("description") || "";
 
-    setAuthorID({ id: receivedAuthorID });
-    setID({ id: receivedID });
+    setAuthorID(receivedAuthorID);
+    setID(receivedID);
     setAuthor({ author: receivedAuthor || "Ole" });
 
     if (!receivedDescription) {
@@ -90,7 +86,7 @@ export default function PictureDetails() {
           <div className="picture-container">
             <Picture
               inputIDObject={{
-                id: Number(id),
+                id: id,
                 authorName: undefined,
                 description: undefined,
                 author: undefined,
@@ -100,16 +96,14 @@ export default function PictureDetails() {
           </div>
           <div className="picture-profile_container">
             <img src="../../img/profile_icon.png" alt="Profile Icon" />
-            <Link
-              to={`/profile?authorId=${authorID.id}&authorName=${authorText}`}
-            >
+            <Link to={`/profile?authorId=${authorID}&authorName=${authorText}`}>
               <p id="picture-author">{authorText}</p>
             </Link>
           </div>
           <hr className="picture-description_seperator" />
           <p id="picture-description">{descriptionText}</p>
           <div id="delete_button_container">
-            <DeleteButton property={id.id} />
+            <DeleteButton property={id} />
           </div>
         </div>
       </div>

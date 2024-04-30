@@ -27,8 +27,6 @@ export default function Gallery() {
     );
     const jsonResult = await result.json();
 
-    console.log(jsonResult.pictures);
-
     setImages((prevImages) => [...prevImages, ...jsonResult.pictures]);
   };
 

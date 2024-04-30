@@ -3,7 +3,6 @@ import * as ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
 import Post from "./components/post";
-import Profile from "./components/profile";
 import ErrorPage from "./ErrorPage";
 import "./index.css";
 import "./inputs.css";
@@ -15,7 +14,7 @@ import LandingPageRoute from "./routes/LandingPageRoute";
 import Main_feed from "./routes/MainFeed";
 import PictureDetailsPage from "./routes/PictureDetailsRoute";
 import PrivacyPolicy from "./routes/PrivacyPolicyPage";
-import Root from "./routes/profile";
+import { default as Profile, default as Root } from "./routes/profile";
 import Search from "./routes/Search";
 
 const router = createBrowserRouter([

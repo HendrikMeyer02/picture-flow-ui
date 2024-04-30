@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Cookie from "universal-cookie";
 
 export interface PictureData {
-  id: number;
+  id: string;
   authorName: string | undefined;
   description: string | undefined;
   author: string | undefined;
