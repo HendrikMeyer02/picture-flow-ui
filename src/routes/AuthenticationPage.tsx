@@ -1,9 +1,9 @@
-import Wave from "../components/wave.tsx";
-import Authentication from "../components/Authentication.tsx";
+import { useTranslation } from "react-i18next";
 import useLocalStorage from "use-local-storage";
-import { Toggle } from "../components/misc/Toggle.tsx"
 import CheckLogin from "../auth/CheckLogin.tsx";
-import { useTranslation } from "react-i18next"
+import Authentication from "../components/Authentication.tsx";
+import { Toggle } from "../components/misc/Toggle.tsx";
+import Wave from "../components/wave.tsx";
 export default function AuthenticationPage() {
   const [isDark, setIsDark] = useLocalStorage("isDark", false);
   const { t } = useTranslation();
@@ -15,10 +15,14 @@ export default function AuthenticationPage() {
     );
   } else {
     return (
-
       <>
         <Wave />
-        <Toggle isChecked={isDark} handleChange={() => setIsDark(!isDark)} ></Toggle>
+        <Toggle
+          isChecked={isDark}
+          handleChange={() => setIsDark(!isDark)}
+          styling={undefined}
+          newID={undefined}
+        ></Toggle>
         <Authentication />
       </>
     );

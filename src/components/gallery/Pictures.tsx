@@ -1,12 +1,26 @@
-import Picture from "./Picture"
-import { Link } from "react-router-dom"
-export default function Pictures({ pictures }) {
+import { Link } from "react-router-dom";
+import Picture from "./Picture"; // Assuming PictureProps is defined in Picture.tsx
 
-    const redirectURL = "/picture_details?id="
+interface PictureData {
+  id: number;
+  authorName: string;
+  description: string;
+  author: string;
+}
 
-    return pictures.map((picture, pos) =>
-        <>
-            <Link to={redirectURL + picture.id + "&author=" + picture.authorName + "&description=" + picture.description + "&authorID=" + picture.author}><Picture inputID={picture} key={pos}></Picture></Link>
-        </>
-    )
+interface Props {
+  pictures: PictureData[];
+}
+
+export default function Pictures({ pictures }: Props) {
+  const redirectURL = "/picture_details?id=";
+
+  return pictures.map((picture, pos) => (
+    <Link
+      to={`${redirectURL}${picture.id}&author=${picture.authorName}&description=${picture.description}&authorID=${picture.author}`}
+      key={pos}
+    >
+      <Picture inputIDObject={picture} key={pos} />
+    </Link>
+  ));
 }

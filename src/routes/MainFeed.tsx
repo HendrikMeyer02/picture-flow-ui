@@ -1,12 +1,10 @@
-
-import Gallery from "../components/Gallery";
-import Wave from "../components/Wave";
+import { useTranslation } from "react-i18next";
+import CheckLogin from "../auth/CheckLogin";
+import Gallery from "../components/gallery";
 import "../components/main_feed.css";
 import Header from "../components/misc/Header";
 import MobileNavbar from "../components/mobile-navbar/MobileNavbar";
 import Navbar from "../components/navbar/Navbar";
-import CheckLogin from "../auth/CheckLogin";
-import { useTranslation } from "react-i18next";
 
 export default function MainFeed() {
   const { t } = useTranslation();
@@ -21,10 +19,11 @@ export default function MainFeed() {
       <>
         <Navbar />
         <MobileNavbar />
-        <div className="gallery-header"><Header /></div>
+        <div className="gallery-header">
+          <Header />
+        </div>
         <Gallery />
       </>
     );
   }
-
 }

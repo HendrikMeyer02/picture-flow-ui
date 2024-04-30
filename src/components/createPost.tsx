@@ -1,7 +1,7 @@
-import "./createPost.css";
-import Cookie from "universal-cookie";
 import { ChangeEvent, useRef, useState } from "react";
-import { useTranslation } from "react-i18next"
+import { useTranslation } from "react-i18next";
+import Cookie from "universal-cookie";
+import "./createPost.css";
 
 export default function CreatePost() {
   const [imageUrl, setImageUrl] = useState("");
@@ -42,7 +42,7 @@ export default function CreatePost() {
       const cookie = new Cookie();
       const auth = cookie.get("authorization");
 
-      const fetchResponse = await fetch("http://localhost:8000/api/upload", {
+      await fetch("http://localhost:8000/api/upload", {
         method: "POST",
         headers: {
           auth: auth,
