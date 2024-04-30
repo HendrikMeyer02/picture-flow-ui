@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import Picture from "./Picture"; // Assuming PictureProps is defined in Picture.tsx
 
 interface PictureData {
-  id: number;
+  id: string;
   authorName: string;
   description: string;
   author: string;
