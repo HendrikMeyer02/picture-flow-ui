@@ -1,48 +1,63 @@
+import { useEffect, useState } from "react";
 import Cookie from "universal-cookie";
-import { useState, useEffect } from "react";
 
-export default function Picture(inputIDObject, key) {
-    const inputID = inputIDObject.inputID.id;
-    const elementID = "#" + inputID;
-    const [objectURL, setObjectURL] = useState(null);
-    const [loading, setLoading] = useState(true);
+export interface PictureData {
+  id: string;
+  authorName: string | undefined;
+  description: string | undefined;
+  author: string | undefined;
+}
 
-    useEffect(() => {
-        const getImage = async () => {
-            const cookie = new Cookie();
-            const auth = cookie.get("authorization");
-            const fetchURL = "http://localhost:8000/api/picture/" + inputID;
+interface PictureProps {
+  inputIDObject: PictureData;
+  key: number | string;
+}
 
-            try {
-                const response = await fetch(fetchURL, {
-                    method: "GET",
-                    headers: {
-                        auth: auth,
-                    },
-                });
+export default function Picture({
+  inputIDObject,
+  key,
+}: PictureProps): JSX.Element {
+  const inputID = inputIDObject.id;
+  const elementID = "#" + inputID;
+  const [objectURL, setObjectURL] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
 
-                if (response.ok) {
-                    const blob = await response.blob();
-                    const url = URL.createObjectURL(blob);
-                    setObjectURL(url);
-                } else {
-                    console.error("Failed to fetch image");
-                }
-            } catch (error) {
-                console.error("Error fetching image:", error);
-            } finally {
-                setLoading(false);
-            }
-        };
+  useEffect(() => {
+    const getImage = async () => {
+      const cookie = new Cookie();
+      const auth = cookie.get("authorization");
+      const fetchURL = "http://localhost:8000/api/picture/" + inputID;
 
-        getImage();
-    }, [inputID]);
+      try {
+        const response = await fetch(fetchURL, {
+          method: "GET",
+          headers: {
+            auth: auth,
+          },
+        });
 
-    if (loading) {
-        return <div>Loading...</div>;
-    }
+        if (response.ok) {
+          const blob = await response.blob();
+          const url = URL.createObjectURL(blob);
+          setObjectURL(url);
+        } else {
+          console.error("Failed to fetch image");
+        }
+      } catch (error) {
+        console.error("Error fetching image:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-    return (
-        <img key={key} id={elementID} src={objectURL} alt="Schönes Bild." />
-    );
+    getImage();
+  }, [inputID]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <img key={key} id={elementID} src={objectURL || ""} alt="Schönes Bild." />
+  );
 }

@@ -145,7 +145,7 @@ export default function Authentication() {
     }
   };
 
-  const login = (token) => {
+  const login = (token: unknown) => {
     const today = new Date();
 
     cookies.set("authorization", token, {

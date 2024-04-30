@@ -1,17 +1,7 @@
-import { createContext, useContext, useState } from "react"
-import CheckLogin from "../auth/CheckLogin";
+import React from "react";
 
-
-export const AuthWrapper = ({ children }) => {
-
-
-    return (
-
-        <>
-            {children}
-        </>
-
-
-    )
-
-}
+export const AuthWrapper: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
+  return <>{children}</>;
+};

@@ -42,7 +42,7 @@ export default function CreatePost() {
       const cookie = new Cookie();
       const auth = cookie.get("authorization");
 
-      const fetchResponse = await fetch("http://localhost:8000/api/upload", {
+      await fetch("http://localhost:8000/api/upload", {
         method: "POST",
         headers: {
           auth: auth,

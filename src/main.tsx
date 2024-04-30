@@ -1,25 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
 import * as ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
+import Post from "./components/post";
 import ErrorPage from "./ErrorPage";
 import "./index.css";
 import "./inputs.css";
-
 import Authentication from "./routes/AuthenticationPage";
 import Contact from "./routes/ContactPage";
 import CreatePost from "./routes/CreatePostPage";
-
 import Imprint from "./routes/ImprintPage";
-import Main_feed from "./routes/MainFeed";
-import Post from "./routes/Post";
-import PrivacyPolicy from "./routes/PrivacyPolicyPage";
-import Profile from "./routes/Profile";
-import Root from "./routes/Root";
-import Search from "./routes/Search";
 import LandingPageRoute from "./routes/LandingPageRoute";
-import PictureDetailsPage from "./routes/PictureDetailsRoute"
-
+import Main_feed from "./routes/MainFeed";
+import PictureDetailsPage from "./routes/PictureDetailsRoute";
+import PrivacyPolicy from "./routes/PrivacyPolicyPage";
+import { default as Profile, default as Root } from "./routes/profile";
+import Search from "./routes/Search";
 
 const router = createBrowserRouter([
   {
@@ -44,7 +40,7 @@ const router = createBrowserRouter([
   },
   {
     path: "main/posts/:postID",
-    element: <Post />,
+    element: <Post imgLink={""} postLink={""} />,
     errorElement: <ErrorPage />,
   },
   {
@@ -80,16 +76,14 @@ const router = createBrowserRouter([
   {
     path: "/picture_details",
     element: <PictureDetailsPage></PictureDetailsPage>,
-    errorElement: <ErrorPage></ErrorPage>
-  }
+    errorElement: <ErrorPage></ErrorPage>,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-
     <App>
       <RouterProvider router={router} />
     </App>
-
   </React.StrictMode>
 );

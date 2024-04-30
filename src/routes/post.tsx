@@ -1,7 +1,6 @@
-import React from "react";
-import "../components/post.css";
-import CheckLogin from "../auth/CheckLogin";
 import { useTranslation } from "react-i18next";
+import CheckLogin from "../auth/CheckLogin";
+import "../components/post.css";
 
 export default function Post() {
   const { t } = useTranslation();

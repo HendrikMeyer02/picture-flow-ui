@@ -1,13 +1,12 @@
-import "./authentication.css";
-import "./profile.css";
+import { ChangeEvent, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useLocation } from "react-router";
+import Cookie from "universal-cookie";
 import "./LandingPage.css";
 import ProfileIcon from "./ProfileIcon";
-import { ChangeEvent, useEffect, useState } from "react";
-import Cookie from "universal-cookie";
+import "./authentication.css";
 import Pictures from "./gallery/Pictures";
-import { useLocation } from "react-router";
-import Cookies from "universal-cookie";
-import { useTranslation } from "react-i18next"
+import "./profile.css";
 
 function Profile() {
   const cookie = new Cookie();
@@ -17,11 +16,6 @@ function Profile() {
   const authorname = queryParams.get("authorName");
   const [images, setImages] = useState([]);
   const { t } = useTranslation();
-  //Events
-  const [values, setValues] = useState({
-    email: "",
-    password: "",
-  });
 
   const authorization = cookie.get("authorization");
 
@@ -70,7 +64,7 @@ function Profile() {
         });
     };
 
-    const setNameEmail = (data) => {
+    const setNameEmail = (data: { username: string; email: string }) => {
       setFormData({
         name: data?.username || "Name",
         email: data?.email || "Email",
@@ -88,7 +82,8 @@ function Profile() {
         getPictures(authorId);
       }
     });
-  }, [authorization, isIDequalToLogin, authorId]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [authorization, isIDequalToLogin, authorId, authorname, formData]);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -97,7 +92,7 @@ function Profile() {
       [name]: value,
     });
 
-    setIsButtonVisible(value !== "" && isIDequalToLogin)
+    setIsButtonVisible(value !== "" && isIDequalToLogin);
   };
 
   const save = async () => {
@@ -106,18 +101,32 @@ function Profile() {
       const nameValue = nameInput.value;
       const passwordValue = passwordInput.value;
 
-      const requestBody = {};
+      interface IrequestBody {
+        email: string;
+        username: string;
+        password: string;
+      }
+      const requestBody: IrequestBody = {
+        email: "",
+        username: "",
+        password: "",
+      };
 
       const emailErr = document.getElementById("email-err");
       const save = document.getElementById("save");
 
-      const emailInputField = document.getElementById("email-input") as HTMLInputElement;
+      const emailInputField = document.getElementById(
+        "email-input"
+      ) as HTMLInputElement;
 
       const emailReg = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-      console.log(emailInputField.value)
+      console.log(emailInputField.value);
 
-      if (emailReg.test(emailInputField!.value) || emailInputField.value == "") {
+      if (
+        emailReg.test(emailInputField!.value) ||
+        emailInputField.value == ""
+      ) {
         emailErr!.style.display = "none";
         if (emailValue !== "") {
           requestBody.email = emailValue;
@@ -147,16 +156,14 @@ function Profile() {
           console.log("At least one field has to be filled.");
         }
         save!.style.backgroundColor = "lightgreen";
-
       } else {
         emailErr!.style.display = "block";
         save!.style.backgroundColor = "darkred";
       }
-
     }
   };
 
-  const newtoken = (token) => {
+  const newtoken = (token: unknown) => {
     const today = new Date();
     cookie.set("authorization", token, {
       expires: new Date(today.getTime() + 3600000 * 24 * 14),
@@ -251,13 +258,13 @@ function Profile() {
                 id="save_button"
               >
                 <button className="wave-button" id="save" onClick={save}>
-                {t("saveChanges")}
+                  {t("saveChanges")}
                 </button>
               </div>
             </div>
           )}
         </div>
-      </div >
+      </div>
       <div className="placeholder-big"></div>
       <div className="profile-picture-gallery picture-gallery">
         <Pictures pictures={images}></Pictures>

@@ -43,6 +43,7 @@ export default function Navbar() {
           isChecked={isDark}
           handleChange={() => setIsDark(!isDark)}
           styling={{ display: "block", margin: 0, position: "static" }}
+          newID={""}
         ></Toggle>
 
         <Link to="/profile">
