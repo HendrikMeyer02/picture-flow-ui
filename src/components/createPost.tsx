@@ -1,7 +1,7 @@
-import "./createPost.css";
-import Cookie from "universal-cookie";
 import { ChangeEvent, useRef, useState } from "react";
-import { useTranslation } from "react-i18next"
+import { useTranslation } from "react-i18next";
+import Cookie from "universal-cookie";
+import "./createPost.css";
 
 export default function CreatePost() {
   const [imageUrl, setImageUrl] = useState("");
@@ -151,12 +151,12 @@ export default function CreatePost() {
               <div className="row center-row-and-col">
                 <div className="submit-div col">
                   <button className="btn btn-primary" onClick={submit}>
-                    Hochladen
+                    {t("uploadPost")}
                   </button>
                 </div>
                 <div className="delete-div col">
                   <button className="btn btn-danger" onClick={removeImage}>
-                    Bild entfernen
+                    {t("removeImage")}
                   </button>
                 </div>
               </div>
