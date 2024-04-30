@@ -62,5 +62,7 @@
     "uploadDescription": "Description",
     "saveChanges": "Save changes",
     "noDescription": "No Description",
-    "notLoggedIn": "Not logged in!"
+    "notLoggedIn": "Not logged in!",
+    "uploadPost": "Upload",
+    "removeImage": "remove Image"
 }
